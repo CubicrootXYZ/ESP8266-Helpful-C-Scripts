@@ -1,3 +1,5 @@
+//control a 5050 LED Stripe via MQTT, just send a RGB Value (e.g. "255,0,16") to the ESP. Used IRLZ44N MOSFETs for the Build.
+
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
