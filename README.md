@@ -13,6 +13,8 @@ I am using:
 
 A clock running on your ESP thats beeing set via a MQTT-Message. 
 
+## Lights
+
 **MQTT LED Stripe with Temperature Control**
 
 Running a 12 V LED Stripe (5050) via MQTT (prepared for OpenHAB). Light will shut down if to hot.
