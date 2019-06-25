@@ -22,3 +22,9 @@ Running a 12 V LED Stripe (5050) via MQTT (prepared for OpenHAB). Light will shu
 **MQTT LED Stripe**
 
 Running a 12 V LED Stripe (5050) via MQTT (prepared for OpenHAB).
+
+## Display
+
+**Clock Weather**
+
+Displaying the time (set via mqtt) and the local temperature and humidity (DHT22-Sensor) to a SSD1306-Display
