@@ -219,6 +219,9 @@ void loop() {
       pushMQTT(String(h).c_str(), "HUMMIDITY");
       pushMQTT(String(t).c_str(), "TEMPERATURE");
     }
+      // read light sensor
+      ambientlight = (analogRead(A0)*100)/1023;
+      pushMQTT(String(ambientlight).c_str(), "AMBIENTLIGHT");
   }
   
     // Update the clock every 1 Second
