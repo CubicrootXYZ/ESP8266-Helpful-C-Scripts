@@ -28,3 +28,7 @@ Running a 12 V LED Stripe (5050) via MQTT (prepared for OpenHAB).
 **Clock Weather**
 
 Displaying the time (set via mqtt) and the local temperature and humidity (DHT22-Sensor) to a SSD1306-Display
+
+## Complete Build: Multisensor1 
+
+A sensor for temperature, humidity, light and pressure. Values are displayed at 2 displays. 
