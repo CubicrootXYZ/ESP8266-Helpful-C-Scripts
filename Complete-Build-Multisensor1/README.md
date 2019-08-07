@@ -46,7 +46,7 @@ It all fits on a 5x7cm board, but thats very tight.
 
 ### Installation
 1. Make sure you have a MQTT server running (Thats needed for the clock).
-2. Let [this](https://github.com/CubicrootXYZ/Helpful-MQTT-Python-Scripts/blob/master/Clock/clock.py) run as a cronjob every 1 to 10 minutes. It will publish the actual time to mqtt. Don't forget to set your MQTT IP-Adress.
+2. Let [this](https://github.com/CubicrootXYZ/Helpful-MQTT-Python-Scripts/blob/master/Clock/clock.py) run as a cronjob every 1 to 10 minutes. It will publish the actual time to mqtt. Don't forget to set your MQTT IP-Adress. Make sure you are using Python 3.
 3. Solder everything together.
 4. Open the run.c and check if all Pins are connected properly. 
 5. Change the wifi settings to your wifi. Do the same with the MQTT settings in the run.c.
