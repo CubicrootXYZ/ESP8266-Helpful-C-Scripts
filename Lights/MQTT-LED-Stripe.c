@@ -22,7 +22,7 @@ int blue = 0;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
-DHT dht(DHTPIN, DHTTYPE);
+DHT dht(PINDHT, DHTTYPE);
 
 //SETUP WIFI
 void setup_wifi() {
@@ -110,7 +110,7 @@ void setup() {
   pinMode(PINGREEN, OUTPUT);
   pinMode(PINBLUE, OUTPUT);
   //sets duty range from 0-1023 to 0-255
-  analogWriteRange(255)
+  analogWriteRange(255);
 }
 
 //LOOP
