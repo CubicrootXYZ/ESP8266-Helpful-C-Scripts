@@ -2,6 +2,7 @@
 
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
+#include "DHT.h"
 
 //SETTINGS
 #define PINGREEN 4
@@ -25,7 +26,7 @@ int blue = 0;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
-DHT dht(DHTPIN, DHTTYPE);
+DHT dht(PINDHT, DHTTYPE);
 
 //SETUP WIFI
 void setup_wifi() {
@@ -108,10 +109,9 @@ int readDHT() {
     float t = dht.readTemperature();
   
     // Check if any reads failed and exit early (to try again).
-    if (isnan(h) || isnan(t) || isnan(f)) {
+    if (isnan(t)) {
       Serial.println("Failed to read from DHT sensor!");
-      strcat(errorReport, "\nFailed to read from DHT22.");
-      return;
+      return 0;
     } 
       Serial.print("Temperature: ");
       Serial.print(t);
@@ -122,7 +122,7 @@ int readDHT() {
       } else {
         return 1;
       }
-    }
+    
 }
 
 //SETUP
@@ -136,13 +136,13 @@ void setup() {
   pinMode(PINGREEN, OUTPUT);
   pinMode(PINBLUE, OUTPUT);
   //sets duty range from 0-1023 to 0-255
-  analogWriteRange(255)
+  analogWriteRange(255);
 }
 
 //LOOP
 void loop() {
   //check if Temp is low enough
-  if (millis()%1000 = 0) {
+  if (millis()%1000 == 0) {
     while (readDHT() == 0) {
       analogWrite(PINRED, 0);
       analogWrite(PINGREEN, 0);
