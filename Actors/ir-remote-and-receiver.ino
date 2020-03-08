@@ -34,7 +34,7 @@ const uint8_t kTimeout = 15;
 #define mqtt_port 1883  //MQTT Port
 #define mqtt_user ""  
 #define mqtt_password ""
-#define SUBTOPIC "devices/ir1/send/#"  // MQTT Channel where you can send IR commands to 
+#define SUBTOPIC "devices/ir1/send/#"  // MQTT Channel where you can send IR commands to. Make sure to only send the non-inverted code, this code automatically inverts it. E.g.: send 0x4C and NOT 0x84C, inverted codes are all starting with 0x8**
 #define PUBLISHTOPIC "devices/ir1/" // Main channel where the tool communicates through, Subchannel "log" is used for logging
 
 //WiFi Settings
