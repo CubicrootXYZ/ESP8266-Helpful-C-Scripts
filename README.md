@@ -38,3 +38,5 @@ A sensor for temperature, humidity, light and pressure. Values are displayed at 
 **IR Receiver and Transmitter**
 
 A IR remote and receiver that displays the received HEX codes (RC5) on a SSD1306 display (256x64). You can send RC5-HEX codes via MQTT to use the IR transmitter.  
+
+! Make sure to only send the non-inverted HEX-codes to the esp, inverted ones are looking like 0x8** whereas non-inverted ones look like 0x**. The esp will automatically send the non-inverted one 2 times and then the inverted one 2 times, thats according to the RC5 Standard and common practise. !
