@@ -32,3 +32,9 @@ Displaying the time (set via mqtt) and the local temperature and humidity (DHT22
 ## Complete Build: Multisensor1 
 
 A sensor for temperature, humidity, light and pressure. Values are displayed at 2 displays. 
+
+## Actors
+
+**IR Receiver and Transmitter**
+
+A IR remote and receiver that displays the received HEX codes (RC5) on a SSD1306 display (256x64). You can send RC5-HEX codes via MQTT to use the IR transmitter.  
