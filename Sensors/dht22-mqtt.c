@@ -71,27 +71,12 @@ void setup_wifi() {
 
 
 void reconnect() {
-  // Loop until we're reconnected or timeout
-  int milis = millis();
-  int timedelta = 0;
-  while (!client.connected() || timedelta < 12000) {
-    Serial.print("Attempting MQTT connection...");
-    // Attempt to connect
-    // If you do not want to use a username and password, change next line to
-    // if (client.connect("ESP8266Client", user, pw)) {
-    if (client.connect("ESP8266Client")) {
-      Serial.println("connected");
-    } else {
-      Serial.print("failed, rc=");
-      Serial.print(client.state());
-      Serial.println(" try again in 5 seconds");
-      // Wait 5 seconds before retrying
-      delay(3000);
+  while (!client.connected()) {
+    String clientId = "ESP8266Client-";
+    clientId += String(random(0xffff), HEX);
+    if (client.connect(clientId.c_str())) {
+    //do shit
     }
-    timedelta = millis()-milis;
-  }
-  if (!client.connected()) {
-    strcat(errorReport, "\nCan't connect to MQTT Broker");
   }
 }
 
