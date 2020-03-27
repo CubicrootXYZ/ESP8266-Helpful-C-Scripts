@@ -1,4 +1,4 @@
-//Control 4 incoming audiochannels (on/off) and set the outgoing volume (just 1 Channel, you'll need a second ESP for a the second channel)
+//Control 4 incoming audiochannels (on/off)
 // Author: cubicrootxyz
 
 #include <SPI.h>
