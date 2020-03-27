@@ -1,6 +1,8 @@
 # ESP8266-Helpful-C-Scripts
 Helpful Scripts for the ESP8266 written in C. 
 
+Licensed under CC-BY-NC.
+
 # How to use
 Just copy and paste the script into the Arduino IDE and upload it to your ESP. 
 
@@ -42,3 +44,9 @@ A IR remote and receiver that displays the received HEX codes (RC5) on a SSD1306
 ! Make sure to only send the non-inverted HEX-codes to the esp, inverted ones are looking like 0x8** whereas non-inverted ones look like 0x**. The esp will automatically send the non-inverted one 2 times and then the inverted one 2 times, thats according to the RC5 Standard and common practise. !
 
 [More Information on my blog](https://blog.cubicroot.xyz/hacking-a-ir-remote-with-a-esp8266)
+
+**MQTT Audioswitch**
+
+A Switch that can change between 4 audio channels. Simple 3.5mm audio jacks. 
+
+[More Information on my blog](https://blog.cubicroot.xyz/mqtt-managed-audio-switch)
