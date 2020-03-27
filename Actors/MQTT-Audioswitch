@@ -1,0 +1,137 @@
+//Control 4 incoming audiochannels (on/off) and set the outgoing volume (just 1 Channel, you'll need a second ESP for a the second channel)
+// Author: cubicrootxyz
+
+#include <SPI.h>
+#include <ESP8266WiFi.h>
+#include <PubSubClient.h>
+
+// Pins to trigger the relays
+#define PINAUDIO1 2
+#define PINAUDIO2 0
+#define PINAUDIO3 4
+#define PINAUDIO4 5
+
+// MQTT Settings
+#define MQTTPORT 1883
+#define MQTTSERVER "MQTT IP"
+// topic we are listening to, use TOPIC/aduio1, TOPIC/audio2, ... with "ON" or "OFF" command to trigger the channels.
+#define MQTTSUBTOPIC "devices/audioswitch1/"
+
+// WiFi Settings
+#define WIFISSID "ssid"
+#define WIFIPASSWORD "password"
+
+// Helpers
+byte address = 0x11;
+String pload = "";
+
+//Setup classes
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+void setup() {
+  // Start Serial
+  Serial.begin(9600);
+  Serial.println("--- Booting ---");
+
+  // Setup WiFi
+  Serial.println("--- Setup WiFi ---");
+  setup_wifi();
+
+  // Setup MQTT
+  Serial.println("--- Setup MQTT ---");
+  client.setServer(MQTTSERVER, MQTTPORT);
+  client.setCallback(callback);
+  Serial.println("Finished setup");
+
+  // Set all the Pins
+  //pinMode(PINVOLUME1_CS, OUTPUT);
+  pinMode(PINAUDIO1, OUTPUT);
+  pinMode(PINAUDIO2, OUTPUT);
+  pinMode(PINAUDIO3, OUTPUT);
+  pinMode(PINAUDIO4, OUTPUT);
+
+}
+
+//MQTT RECONNECT
+void reconnect() {
+  while (!client.connected()) {
+    String clientId = "ESP8266Client-";
+    clientId += String(random(0xffff), HEX);
+    if (client.connect(clientId.c_str())) {
+      client.subscribe(MQTTSUBTOPIC);
+    }
+  }
+  Serial.println("MWTT connected");
+}
+
+//SETUP WIFI
+void setup_wifi() {
+  delay(2);
+  //WIFI
+  Serial.println("Connecting to ");
+  Serial.println(WIFISSID);
+
+  //connect to your local wi-fi network
+  WiFi.begin(WIFISSID, WIFIPASSWORD);
+
+  //check wi-fi is connected to wi-fi network
+  while (WiFi.status() != WL_CONNECTED) {
+  delay(1000);
+  Serial.print(".");
+  }
+  Serial.println("");
+  Serial.println("WiFi connected..!");
+  Serial.print("Got IP: ");  Serial.println(WiFi.localIP());
+}
+
+//MQTT ON MESSAGE
+void callback(char* topic, byte* payload, unsigned int length) {
+  pload = "";
+  for (int i = 0; i < length; i++) {
+    pload.concat((char)payload[i]);
+  }
+
+  if(strstr(topic, "audio1") != NULL && pload == "ON") {
+    digitalWrite(PINAUDIO1, HIGH);
+    Serial.println("audio1");
+  } else if(strstr(topic, "audio2") != NULL && pload == "ON") {
+    digitalWrite(PINAUDIO2, HIGH);
+    Serial.println("audio2");
+  } else if(strstr(topic, "audio3") != NULL && pload == "ON") {
+    digitalWrite(PINAUDIO3, HIGH);
+    Serial.println("audio3");
+  } else if(strstr(topic, "audio4") != NULL && pload == "ON") {
+    digitalWrite(PINAUDIO4, HIGH);
+    Serial.println("audio4");
+  } else if(strstr(topic, "audio1") != NULL && pload == "OFF") {
+    digitalWrite(PINAUDIO1, LOW);
+  } else if(strstr(topic, "audio2") != NULL && pload == "OFF") {
+    digitalWrite(PINAUDIO2, LOW);
+  } else if(strstr(topic, "audio3") != NULL && pload == "OFF") {
+    digitalWrite(PINAUDIO3, LOW);
+  } else if(strstr(topic, "audio4") != NULL && pload == "OFF") {
+    digitalWrite(PINAUDIO4, LOW);
+  } else if(strstr(topic, "volume") != NULL) {
+    //digitalPotWrite(pload.toInt());
+  }
+
+  Serial.println("--- Received Update ---");
+  Serial.print("Channel: ");
+  Serial.println(topic);
+  Serial.print("Payload: ");
+  Serial.println(pload);
+}
+
+
+void loop() {
+  Serial.println("Loop");
+  //connect to MQTT-Server
+  if (!client.connected()) {
+    Serial.println("Reconnect");
+    reconnect();
+  }
+  client.loop();
+  delay(100);
+
+}
