@@ -8,6 +8,7 @@ Just copy and paste the script into the Arduino IDE and upload it to your ESP.
 
 I am using: 
 - NodeMCU v3
+- Wemos D1 Mini
 
 # Available Scripts
 ## Information Flow
