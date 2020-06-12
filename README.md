@@ -36,6 +36,12 @@ Displaying the time (set via mqtt) and the local temperature and humidity (DHT22
 
 A sensor for temperature, humidity, light and pressure. Values are displayed at 2 displays. 
 
+## PIR-Weather-Display
+
+A build that includes a SHT temperature and humidity sensor, a Dallas 18B20 temperature sensor, a PIR-Motion, a Light sensor sensor and a SSD1306 display.
+
+Build sketch is included.
+
 ## Actors
 
 **IR Receiver and Transmitter**
