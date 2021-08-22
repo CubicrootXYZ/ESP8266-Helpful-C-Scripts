@@ -32,6 +32,10 @@ Running a 12 V LED Stripe (5050) via MQTT (prepared for OpenHAB).
 
 Displaying the time (set via mqtt) and the local temperature and humidity (DHT22-Sensor) to a SSD1306-Display
 
+**NTP time Home Assistant Weather**
+
+SSD1306 with local time and date from NTP server and weather from home assistant. 
+
 ## Complete Build: Multisensor1 
 
 A sensor for temperature, humidity, light and pressure. Values are displayed at 2 displays. 
