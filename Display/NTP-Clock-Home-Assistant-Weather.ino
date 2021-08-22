@@ -116,7 +116,6 @@ unsigned long clockTimeNTP = 60001;
 unsigned long metadataTime = 60001;
 double temperature = -99.0;
 double windspeed = -1.0;
-int weatherIcon[ICON_WIDTH][ICON_HEIGTH];
 char weather[15];
 
 // Display stuff
