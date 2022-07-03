@@ -1,3 +1,7 @@
+! Future microcontroller firmware will be found here: https://github.com/Microcontroller-Firmware !
+
+--------------
+
 # ESP8266-Helpful-C-Scripts
 Helpful Scripts for the ESP8266 written in C. 
 
